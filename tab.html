@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="vue.js"></script>
+</head>
+<style>
+nav {
+    width: 300px;
+    height: 50px;
+    line-height: 50px;
+    display: flex;
+    border: 1px solid #cccccc;
+}
+nav span {
+    flex: 1;
+    text-align: center;
+}
+.active {
+    color: red;
+}
+.box {
+    width: 100px;
+    height: 100px;
+    background: blue;
+}
+</style>
+<body>
+    <div id="app">
+        <nav>
+            <span
+                :class="{active: curIndex == index}"
+                v-for="(item, index) in navlist"
+                @click="changeTab(index, $event)"
+            >{{item.text}}</span>
+        </nav>
+
+        <div>{{navlist[curIndex].content}}</div>
+
+        <a :href="url">百度</a>
+        <hr>
+        <div class="box" @click="handleClick"></div>
+    </div>
+
+    <!-- box.onclick = handleClick
+    box.onclick = function(){
+        changeTab(index, $event)
+    } -->
+
+    <script>
+        new Vue({
+            el: '#app',
+            // 存数据
+            data: {
+                // 当前显示的高亮
+                curIndex: 0, 
+                navlist: [
+                    {
+                        text: 'tab1',
+                        content: 'tab1-content'
+                    },
+                    {
+                        text: 'tab2',
+                        content: 'tab2-content'
+                    },
+                    {
+                        text: 'tab3',
+                        content: 'tab3-content'
+                    }
+                ],
+                url: 'http://baidu.com'
+            },
+            // 存函数
+            methods: {
+                changeTab(index, e){
+                    this.curIndex = index;
+                    console.log(e)
+                },
+                handleClick(a){
+                    console.log('点击篮筐', a)
+                }
+            }
+        })
+    </script>
+</body>
+</html>

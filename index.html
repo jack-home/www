@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <!-- 变量 => 响应式 数据更新 改变页面 -->
+        <!-- 声明式渲染 表达式 => className | fn() | a >90 ? '及格' : '不及格' -->
+        <h1>{{ className }}</h1>
+        <hr >
+        <h2 v-text="name"></h2>
+        <input type="text" v-model="num">
+        <!-- 指令 => 标签上使用 v-xxx  指令里可以使用vue变量-->
+        <p>成绩：
+            <!-- <span v-if="num >= 90">及格</span>
+            <span v-else-if="num < 90 && num > 60">不及格</span>
+            <span v-else>啥都不会</span> -->
+            <span v-show="num >= 90">及格</span>
+            <span v-show="num < 90 && num > 60">不及格</span>
+            <span v-show="num <= 60">啥都不会</span>
+        </p>
+        <hr >
+        <!-- 遍历数组 -->
+        <ul>
+            <li v-for="(item, index) in song">{{item}} --- {{index}}</li>   
+        </ul>
+        <hr >
+        <!-- 遍历对象 -->
+        <ul>
+            <li v-for="(val, key, index) in person">{{val}} --- {{key}} --- {{index}}</li>   
+        </ul>
+        <hr >
+        <!-- 遍历对象 -->
+        <ul>
+            <li v-for="(val, index) in 3">{{val}} --- {{index}}</li>   
+        </ul>
+        <hr >
+        <!-- 遍历str -->
+        <ul>
+            <li v-for="(val, index) in 'abc'">{{val}} --- {{index}}</li>   
+        </ul>
+    </div>
+
+    <script>
+        let vm = new Vue({
+            // vue 挂载的元素 => 在这个元素里面可以使用vue
+            el: '#app',
+            // 数据
+            data: {
+                className: '1706D',
+                name: '姓名： <span>姬深定</span>',
+                num: 0,
+                song: ['刚好遇见你', '爱我别走', '后来', '套马杆'],
+                person: {
+                    name: '健钢',
+                    age: '12',
+                    sex: '女'
+                }
+            }
+        })
+    </script>
+</body>
+</html>
